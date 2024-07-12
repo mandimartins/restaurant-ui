@@ -1,0 +1,25 @@
+.container{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.card-size{
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.icon-container{
+    min-width:15rem;
+    min-height: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon-display {
+    transform: scale(5);
+    text-align: center;
+}

@@ -1,0 +1,28 @@
+#FileInput{
+    visibility: hidden;
+}
+.CustomFileInputWrapper{
+    position: relative!important;
+    height: 60px;
+    border: 1px solid #44474e;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.CustomFileInput{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span{
+        color:#44474e;
+    }
+}

@@ -1,0 +1,21 @@
+.error{
+    padding: 1rem;
+    margin-top:2rem;
+    border-radius: 10px;
+}
+
+.error-list {
+    padding-left: 20px;
+
+    &__item{
+        list-style: disc!important;
+        color: #b71c1c;
+    }
+}
+
+.icon-display{
+    float: right;
+    clear: both;
+
+    cursor: pointer;
+}
