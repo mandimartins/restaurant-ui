@@ -76,7 +76,7 @@ export class UpdateComponent {
     if (this.form.controls.Description.hasError('required')) {
       this.descriptionErrorMessage.set('[Description] is required.');
     } else if (this.form.controls.Description.hasError('maxlength')) {
-      this.descriptionErrorMessage.set('[Description] Cannot have more than 80 characters');
+      this.descriptionErrorMessage.set('[Description] cannot have more than 80 characters');
     } else {
       this.descriptionErrorMessage.set('');
     }
@@ -86,7 +86,7 @@ export class UpdateComponent {
     if (this.form.controls.Name.hasError('required')) {
       this.nameErrorMessage.set('[Name] is required.');
     } else if (this.form.controls.Name.hasError('maxlength')) {
-      this.nameErrorMessage.set('[Name] Cannot have more than 35 characters');
+      this.nameErrorMessage.set('[Name] cannot have more than 35 characters');
     } else {
       this.nameErrorMessage.set('');
     }
