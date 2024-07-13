@@ -87,7 +87,7 @@ export class LoginComponent {
     }else if(this.form.controls.Password.hasError('minlength')){
       this.passwordErrorMessage.set('[Password] must have at least 8 character')
     }else {
-      this.emailErrorMessage.set('');
+      this.passwordErrorMessage.set('');
     }
   }
 }
