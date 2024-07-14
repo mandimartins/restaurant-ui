@@ -15,7 +15,7 @@
                             <div class="row">
                                 <mat-form-field class="col s12 m6 l3" appearance="outline">
                                     <mat-label>Code</mat-label>
-                                    <input matInput formControlName="Code" >
+                                    <input matInput formControlName="Id" >
                                 </mat-form-field>
                             </div>
 
@@ -61,7 +61,7 @@
                     </div>
                 </mat-card-content>
                 <mat-card-actions >
-                    <button mat-button (click)="onSave()" [disabled]="this.form.invalid" >SAVE</button>
+                    <button mat-button (click)="onSave()" [disabled]="this.form.invalid || visualize" >SAVE</button>
                     <button mat-button (click)="onCancel()">CANCEL</button>
                 </mat-card-actions>
             </mat-card>
