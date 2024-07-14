@@ -14,4 +14,8 @@ export class UpdateService {
   public Save(body:UpdateViewModel):Observable<unknown>{
     return this.httpClientService.post('https://localhost:7051/api/category/add',body)
   }
+  
+  public Get(id:number): Observable<unknown>{
+    return this.httpClientService.get(`https://localhost:7051/api/category/get/${id}`)
+  }
 }

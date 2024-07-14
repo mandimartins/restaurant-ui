@@ -5,7 +5,7 @@ import { UpdateService } from './update.service';
 import { first, merge } from 'rxjs';
 import { ErrorBarComponent } from '../../../shared/components/error-bar/error-bar.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import {
   MatSnackBar,
@@ -22,6 +22,7 @@ export class UpdateComponent {
   updateViewModel = new UpdateViewModel();
   descriptionErrorMessage = signal('');
   nameErrorMessage = signal('');
+  visualize = false;
 
   @ViewChild('errorBar') errorBar!: ErrorBarComponent;
 
@@ -29,14 +30,15 @@ export class UpdateComponent {
     private formBuilder: FormBuilder,
     private updateService: UpdateService,
     private route: Router,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private activaredRoute: ActivatedRoute) {
 
-      this.form = this.formBuilder.group({
-        Code: [{ value: '', disabled: true },],
-        Name: ['', [Validators.required, Validators.maxLength(35)]],
-        Description: ['', [Validators.required, Validators.maxLength(80)]],
-        // ParentCategory: ['',]
-      })
+    this.form = this.formBuilder.group({
+      Id: [{ value: '', disabled: true },],
+      Name: ['', [Validators.required, Validators.maxLength(35)]],
+      Description: ['', [Validators.required, Validators.maxLength(80)]],
+      // ParentCategory: ['',]
+    })
 
     merge(this.form.controls.Name.statusChanges,
       this.form.controls.Name.valueChanges)
@@ -50,10 +52,30 @@ export class UpdateComponent {
   }
 
   ngOnInit(): void {
-
+    this.configureEditVisualize();
   }
 
-  onCancel(){
+  configureEditVisualize() {
+
+    const id = this.activaredRoute.snapshot.params['id']
+
+    if (id > 0)
+      this.updateService.Get(id)
+        .pipe(first())
+        .subscribe({
+          next: data => {
+            this.form.reset(data);
+
+            if (this.route.url.includes('visualize')) {
+              this.visualize = true
+              this.form.disable();
+            }
+          },
+          error: error => this.errorBar.handleError(error)
+        })
+  }
+
+  onCancel() {
     this.route.navigate(['/admin'])
   }
 
@@ -65,7 +87,7 @@ export class UpdateComponent {
       .Save(this.updateViewModel)
       .pipe(first())
       .subscribe({
-        next: (data) => this.snackBar.open('Category created successfully!',"OK"),
+        next: (data) => this.snackBar.open('Category created successfully!', "OK"),
         error: (error) => {
           return this.errorBar.handleError(error)
         }

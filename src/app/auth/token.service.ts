@@ -17,9 +17,9 @@ export class TokenService {
     if(!data)
       return "";
 
-    const userInfo = JSON.parse(data) as IUserInfo
+    const {Token} = JSON.parse(data) as IUserInfo
 
-    return userInfo.token;
+    return Token;
   }
 
   public storeUserInfo(userInfo: IUserInfo){
