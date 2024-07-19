@@ -13,7 +13,7 @@ export class ErrorBarComponent {
   }
   
   isOpen = false;
-  errors: Array<any> = new Array<string>();
+  errors: Array<any> = new Array<any>();
 
   handleError(error: HttpErrorResponse){
     this.isOpen = true;
