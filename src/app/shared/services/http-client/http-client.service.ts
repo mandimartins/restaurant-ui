@@ -63,11 +63,11 @@ export class HttpClientService {
 }
 
 class ErrorMessage{
-  public readonly title: string;
-  public readonly content:string;
+  public readonly Title: string;
+  public readonly Content:string;
 
   constructor(private _title:string, private _content: any) {
-    this.title = _title;
-    this.content = _content;
+    this.Title = _title;
+    this.Content = _content;
   }
 }
