@@ -3,6 +3,7 @@ import { Observable, map } from 'rxjs';
 import { HttpClientService } from '../shared/services/http-client/http-client.service';
 import { TokenService } from './token.service';
 import { IUserInfo } from './IUserInfo';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
 
   public auth(user: any): Observable<unknown> {
     return this.httpClientService
-      .post('https://localhost:7051/api/auth/signin', user)
+    .post(`${environment.RESTAURANT_API}/auth/signin`, user)
       .pipe(
         map(response => {
           this.tokenService.storeUserInfo((response as IUserInfo))
