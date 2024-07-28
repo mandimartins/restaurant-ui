@@ -12,25 +12,25 @@ export class HttpClientService {
               private errorHandlerService: ErrorHandlerService
   ) { }
 
-  get(url: string, options?: { headers?: HttpHeaders, params?: HttpParams }): Observable<any> {
-    return this.http.get(url, options).pipe(
+  get<T>(url: string, options?: { headers?: HttpHeaders, params?: HttpParams }): Observable<T> {
+    return this.http.get<T>(url, options).pipe(
       retry(2), // Retry the request up to 2 times
       catchError(this.errorHandlerService.handleError)
     );
   }
 
-  post(url: string, body: any, options?: { headers?: HttpHeaders }): Observable<unknown> {
-    return this.http.post(url, body, options).pipe(catchError(this.errorHandlerService.handleError))
+  post<T>(url: string, body: any, options?: { headers?: HttpHeaders }): Observable<T> {
+    return this.http.post<T>(url, body, options).pipe(catchError(this.errorHandlerService.handleError))
   }
 
-  put(url: string, body: any, options?: { headers?: HttpHeaders }): Observable<unknown> {
-    return this.http.put(url, body, options).pipe(
+  put<T>(url: string, body: any, options?: { headers?: HttpHeaders }): Observable<T> {
+    return this.http.put<T>(url, body, options).pipe(
       catchError(this.errorHandlerService.handleError)
     );
   }
 
-  delete(url: string, options?: { headers?: HttpHeaders }): Observable<unknown> {
-    return this.http.delete(url, options).pipe(
+  delete<T>(url: string, options?: { headers?: HttpHeaders }): Observable<T> {
+    return this.http.delete<T>(url, options).pipe(
       catchError(this.errorHandlerService.handleError)
     );
   }

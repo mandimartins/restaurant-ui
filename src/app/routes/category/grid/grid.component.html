@@ -1,41 +1,63 @@
 <div class="row">
+  <div class="col l12 m12 s12">
+      <app-error-bar #errorBar></app-error-bar>
+  </div>
+</div>
+
+<div class="content">
+  <div class="row">
     <div class="col l12">
-        <div class="mat-elevation-z8">
-            <table mat-table [dataSource]="dataSource">
-          
-              <!-- Position Column -->
-              <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      <mat-card>
+        <mat-card-content>
+         
+            <div class="table__container">
+            <table mat-table [dataSource]="dataSource$">
+      
+              <ng-container matColumnDef="Actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button class="btn__action" (click)="onView(element)">
+                    <mat-icon>visibility</mat-icon>
+                  </button>
+                  <button mat-icon-button class="btn__action" (click)="onUpdate(element)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button class="btn__action" (click)="onDelete(element)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
               </ng-container>
-          
-              <!-- Name Column -->
-              <ng-container matColumnDef="name">
+
+              <ng-container matColumnDef="Id">
+                <th mat-header-cell *matHeaderCellDef> Id </th>
+                <td mat-cell *matCellDef="let item"> {{item.Id}} </td>
+              </ng-container>
+      
+              <ng-container matColumnDef="Name">
                 <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <td mat-cell *matCellDef="let item"> {{item.Name}} </td>
               </ng-container>
-          
-              <!-- Weight Column -->
-              <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef> Weight </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      
+              <ng-container matColumnDef="Description">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let item"> {{item.Description}} </td>
               </ng-container>
-          
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="symbol">
-                <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-              </ng-container>
-          
+      
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-          
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                           showFirstLastButtons
-                           aria-label="Select page of periodic elements">
-            </mat-paginator>
           </div>
-          
+            <mat-paginator 
+              #paginator
+              [pageSizeOptions]="pageSizeOptions" 
+              [length]="dataSource$.total" 
+              (page)="onPageChange($event)"
+              showFirstLastButtons
+              aria-label="Select page of category">
+            </mat-paginator>
+        </mat-card-content>
+      </mat-card>
+  
     </div>
+  </div>
 </div>
