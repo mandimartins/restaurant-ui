@@ -7,9 +7,9 @@ export interface IBaseFilter {
     sort: [];
 }
 
-export interface ITable<Type>{
+export interface ITable<Type> {
     data: Type[];
-    total:number;
+    total: number;
 }
 
 export interface IGridService<Type> {
@@ -22,7 +22,7 @@ export class CustomDataSource<T> extends DataSource<T> {
         super()
     }
 
-    public total:number  = 0
+    public total: number = 0
 
     private sourceSubject = new BehaviorSubject<T[]>([]);
 
@@ -38,7 +38,7 @@ export class CustomDataSource<T> extends DataSource<T> {
         this.sourceSubject.complete();
     }
 
-    fetch(params: IBaseFilter,) {
+    fetch(params: IBaseFilter) {
 
         this.loadingSubject.next(true);
 
@@ -51,8 +51,9 @@ export class CustomDataSource<T> extends DataSource<T> {
 
                 const table = data as ITable<T>
                 this.total = table.total;
-                this.sourceSubject.next(table.data as T[]) 
-                
+
+                this.sourceSubject.next(table.data as T[])
+
             })
     }
 }

@@ -14,6 +14,7 @@ import { MatButton } from '@angular/material/button';
 import { FileUploadModule } from '../../shared/components/file-upload/file-upload.module';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { ErrorBarModule } from '../../shared/components/error-bar/error-bar.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ErrorBarModule } from '../../shared/components/error-bar/error-bar.modu
     MatSelect,
     MatOption,
     ErrorBarModule,
+    MatIconModule
   ]
 })
 export class CategoryModule { }

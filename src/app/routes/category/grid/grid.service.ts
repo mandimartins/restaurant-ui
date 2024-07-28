@@ -15,4 +15,8 @@ export class GridService implements IGridService<GridViewModel> {
   public getAll(payLoad:IBaseFilter): Observable<ITable<GridViewModel>>{
     return this.httpClientService.post<ITable<GridViewModel>>(`${environment.RESTAURANT_API}/category/getall`,payLoad)
   }
+
+  public delete(id:number):Observable<GridViewModel>{
+    return this.httpClientService.delete(`${environment.RESTAURANT_API}/category/delete/${id}`)
+  }
 }
