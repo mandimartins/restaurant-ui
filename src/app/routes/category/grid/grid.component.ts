@@ -99,5 +99,5 @@ export class GridComponent {
       exitAnimationDuration: '0ms'
     });
   }
-
+  
 }

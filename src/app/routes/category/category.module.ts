@@ -44,6 +44,7 @@ import { ConfirmDeletionModule } from '../../shared/components/confirm-deletion/
     ErrorBarModule,
     MatIconModule,
     ConfirmDeletionModule
+
   ]
 })
 export class CategoryModule { }
