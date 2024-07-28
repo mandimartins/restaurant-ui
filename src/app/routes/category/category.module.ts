@@ -15,6 +15,7 @@ import { FileUploadModule } from '../../shared/components/file-upload/file-uploa
 import { MatOption, MatSelect } from '@angular/material/select';
 import { ErrorBarModule } from '../../shared/components/error-bar/error-bar.module';
 import { MatIconModule } from '@angular/material/icon';
+import { ConfirmDeletionModule } from '../../shared/components/confirm-deletion/confirm-deletion/confirm-deletion.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelect,
     MatOption,
     ErrorBarModule,
-    MatIconModule
+    MatIconModule,
+    ConfirmDeletionModule
   ]
 })
 export class CategoryModule { }
