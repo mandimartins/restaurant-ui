@@ -4,18 +4,19 @@ import { CommonModule } from '@angular/common';
 import { CategoryRoutingModule } from './category-routing.module';
 import { GridComponent } from './grid/grid.component';
 import { UpdateComponent } from './update/update.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardHeader, MatCardTitle } from '@angular/material/card';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { FileUploadModule } from '../../shared/components/file-upload/file-upload.module';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { ErrorBarModule } from '../../shared/components/error-bar/error-bar.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmDeletionModule } from '../../shared/components/confirm-deletion/confirm-deletion/confirm-deletion.module';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ConfirmDeletionModule } from '../../shared/components/confirm-deletion/
     CommonModule,
     CategoryRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     FileUploadModule,
     MatFormFieldModule, 
     MatInputModule,
@@ -37,14 +39,14 @@ import { ConfirmDeletionModule } from '../../shared/components/confirm-deletion/
     MatCardContent,
     MatCardFooter,
     MatCardActions,
-    MatButton,
+    MatButtonModule,
     MatCardTitle,
     MatSelect,
     MatOption,
     ErrorBarModule,
     MatIconModule,
-    ConfirmDeletionModule
-
+    ConfirmDeletionModule,
+    MatSortModule,
   ]
 })
 export class CategoryModule { }
