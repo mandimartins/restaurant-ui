@@ -2,19 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { GridViewModel } from './grid.viewmodel';
 import { GridService } from './grid.service';
-import { CustomDataSource } from '../../../shared/models/basegrid';
+import { CustomDataSource, ISort } from '../../../shared/models/basegrid';
 import { first } from 'rxjs';
 import { ErrorBarComponent } from '../../../shared/components/error-bar/error-bar.component';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmDeletionComponent } from '../../../shared/components/confirm-deletion/confirm-deletion/confirm-deletion.component';
-
-interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-grid',
@@ -31,9 +25,11 @@ export class GridComponent {
 
   dataSource$ = new CustomDataSource<GridViewModel>(this.gridService);
 
+  filterTerm: string = ''
+  filterType: number = 1;
   skip: number = 0;
   take: number = 5;
-  sort: [] = [];
+  sort: ISort[] = [];
   pageSize: number = 5;
   pageSizeOptions = [5, 10, 20];
 
@@ -44,14 +40,16 @@ export class GridComponent {
   dialog!: MatDialogRef<ConfirmDeletionComponent>;
 
   ngOnInit() {
-    this.dataSource$.fetch({ skip: this.skip, take: this.take, sort: this.sort })
+
   }
 
   fetchTable() {
     this.dataSource$.fetch({
       take: this.paginator.pageSize,
       skip: this.paginator.pageIndex * this.paginator.pageSize,
-      sort: []
+      sort: this.sort,
+      filterTerm: this.filterTerm,
+      filterType: this.filterType
     })
   }
 
@@ -99,5 +97,11 @@ export class GridComponent {
       exitAnimationDuration: '0ms'
     });
   }
-  
+
+  onSortChange({ active, direction }: Sort) {
+    this.sort = [];
+    this.sort.push({ column: active, direction })
+    this.fetchTable();
+  }
+
 }

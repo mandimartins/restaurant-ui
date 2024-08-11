@@ -1,10 +1,16 @@
 import { CollectionViewer, DataSource } from "@angular/cdk/collections";
 import { BehaviorSubject, catchError, finalize, Observable, of } from "rxjs";
 
+export interface ISort {
+    column: string;
+    direction: string
+}
 export interface IBaseFilter {
     skip: number;
     take: number;
-    sort: [];
+    sort: ISort[];
+    filterTerm: string;
+    filterType:number;
 }
 
 export interface ITable<Type> {
