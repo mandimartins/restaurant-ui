@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: '', redirectTo: '', pathMatch: 'full'},
+  { path: '', redirectTo: '', pathMatch: 'full'},
   { path: 'login', loadChildren: () => import('./routes/login/login.module').then(m => m.LoginModule) }, 
   { path: 'orders', loadChildren: () => import('./routes/orders/orders.module').then(m => m.OrdersModule) },
   { path: 'admin', loadChildren: () => import('./routes/admin/admin.module').then(m => m.AdminModule) },
