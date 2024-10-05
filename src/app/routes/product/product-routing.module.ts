@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductComponent } from './product.component';
+import { GridComponent } from './grid/grid.component';
+import { UpdateComponent } from './update/update.component';
 
-const routes: Routes = [{ path: '', component: ProductComponent }];
+const routes: Routes = [
+  { path: 'list/:id', component: GridComponent },
+  { path: 'list', component: GridComponent },
+  { path: 'edit/:id', component: UpdateComponent, },
+  { path: 'visualize/:id', component: UpdateComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
