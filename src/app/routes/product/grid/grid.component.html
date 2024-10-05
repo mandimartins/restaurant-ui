@@ -18,9 +18,9 @@
       <mat-form-field appearance="outline">
         <mat-label>Search option</mat-label>
         <mat-select [(ngModel)]="filterType" style="padding:3px">
-          <mat-option [value]="1">Code</mat-option>
-          <mat-option [value]="2">Description</mat-option>
-          <mat-option [value]="3">Name</mat-option>
+          <mat-option [value]="filterTypeEnum.Code">Code</mat-option>
+          <mat-option [value]="filterTypeEnum.Description">Description</mat-option>
+          <mat-option [value]="filterTypeEnum.Name">Name</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
