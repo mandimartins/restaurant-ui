@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col l12 m12 s12" style="margin-top: 20px;">
+      <a mat-fab extended routerLink="/admin">
+        <mat-icon>arrow_back</mat-icon>
+        Go back</a>
+    </div>
+  </div>
+
+<div class="row">
+    <div class="col l12 m12 s12">
+        <app-error-bar #errorBar></app-error-bar>
+    </div>
+</div>
+
+<div class="content">
+    <div class="row">
+        <div class="col l8 m12 s12 offset-l2">
+            <mat-card >
+                <mat-card-content>
+                    <div class="row">
+                        <form [formGroup]="form" class="col s12 m12 l12">
+
+                            <div class="row">
+                                <mat-form-field class="col s12 m6 l3" appearance="outline">
+                                    <mat-label>Code</mat-label>
+                                    <input matInput formControlName="Id" >
+                                </mat-form-field>
+                            </div>
+
+                            <div class="row">
+                                <mat-form-field class="col s12 m12 l12" appearance="outline">
+                                    <mat-label>Name</mat-label>
+                                    <input 
+                                        matInput placeholder="Ex. The Fried Kitchen" 
+                                        formControlName="Name"
+                                        (blur)="updateNameErrorMessage()">
+                                    @if (form.controls.Name.invalid) {
+                                        <mat-error>{{nameErrorMessage()}}</mat-error>
+                                    }
+                                </mat-form-field>
+                            </div>
+                    
+                            <div class="row">
+                                <mat-form-field class="col s12 m12 l12" appearance="outline">
+                                    <mat-label>Description</mat-label>
+                                    <input 
+                                        matInput 
+                                        placeholder="Ex. Additional info..." 
+                                        formControlName="Description"
+                                        (blur)="updateDescriptionErrorMessage()">
+                                        
+                                    @if (form.controls.Description.invalid) {
+                                        <mat-error>{{descriptionErrorMessage()}}</mat-error>
+                                    }
+                                </mat-form-field>
+                            </div>
+
+                            <div class="row">
+                                <mat-form-field class="col s12 m12 l12" appearance="outline">
+                                    <mat-label>Price</mat-label>
+                                    <input 
+                                        matInput 
+                                        placeholder="Ex. Additional info..." 
+                                        formControlName="Price"
+                                        (change)="formatCurrency()"
+                                        (blur)="updatePriceErrorMessage()">
+                                        
+                                    @if (form.controls.Price.invalid) {
+                                        <mat-error>{{priceErrorMessage()}}</mat-error>
+                                    }
+                                </mat-form-field>
+                            </div>
+    
+                            <!-- <div class="row">
+                                <mat-form-field class="col s12 m12 l12" appearance="outline">
+                                    <mat-label>Parent category</mat-label>
+                                    <mat-select formControlName="ParentCategory">
+                                      <mat-option value="option1">Option 1</mat-option>
+                                      <mat-option value="option3">Option 3</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div> -->
+                            
+                        </form>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions >
+                    <button mat-button (click)="onSave()" [disabled]="this.form.invalid || visualize" >SAVE</button>
+                    <button mat-button (click)="onCancel()">CANCEL</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    
+</div>
