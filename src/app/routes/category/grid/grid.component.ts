@@ -5,10 +5,11 @@ import { GridService } from './grid.service';
 import { CustomDataSource, ISort } from '../../../shared/models/basegrid';
 import { first } from 'rxjs';
 import { ErrorBarComponent } from '../../../shared/components/error-bar/error-bar.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmDeletionComponent } from '../../../shared/components/confirm-deletion/confirm-deletion/confirm-deletion.component';
 import { Sort } from '@angular/material/sort';
+import { FilterTypeEnum } from '../../../shared/enums/filterTypeEnum';
 
 @Component({
   selector: 'app-grid',
@@ -19,8 +20,10 @@ export class GridComponent {
 
   constructor(private gridService: GridService,
     private router: Router,
-    private matDialogService: MatDialog) { }
+    private matDialogService: MatDialog,
+    private activatedRoute: ActivatedRoute) { }
 
+  readonly filterTypeEnum = FilterTypeEnum;
   displayedColumns: string[] = ['Actions', 'Id', 'Name', 'Description'];
 
   dataSource$ = new CustomDataSource<GridViewModel>(this.gridService);
@@ -55,6 +58,16 @@ export class GridComponent {
 
   ngAfterViewInit() {
 
+    this.activatedRoute.data
+    .subscribe({
+      next: ({resolvedData}) => {
+        this.filterTerm = resolvedData ? resolvedData : '';
+        this.filterType = this.filterTypeEnum.Code
+        this.fetchTable();
+      },
+      error: error => this.errorBar.handleError(error)
+    })
+    
   }
 
   onPageChange(e: PageEvent) {

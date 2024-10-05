@@ -12,11 +12,11 @@ export class UpdateService {
 
   constructor(private httpClientService: HttpClientService) { }
 
-  public Save(body:UpdateViewModel):Observable<unknown>{
+  public Save(body:UpdateViewModel):Observable<UpdateViewModel>{
     return this.httpClientService.post(`${environment.RESTAURANT_API}/category/add`,body)
   }
   
-  public Get(id:number): Observable<unknown>{
+  public Get(id:number): Observable<UpdateViewModel>{
     return this.httpClientService.get(`${environment.RESTAURANT_API}/category/get/${id}`)
   }
 }
