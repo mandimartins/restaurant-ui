@@ -31,7 +31,7 @@ export class UpdateComponent {
     private updateService: UpdateService,
     private route: Router,
     private snackBar: MatSnackBar,
-    private activaredRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute) {
 
     this.form = this.formBuilder.group({
       Id: [{ value: '', disabled: true },],
@@ -57,26 +57,24 @@ export class UpdateComponent {
 
   configureEditVisualize() {
 
-    const id = this.activaredRoute.snapshot.params['id']
+    this.activatedRoute.data
+    .subscribe({
+      next: ({resolvedData}) => {
+        
+        this.form.reset(resolvedData);
+        this.updateViewModel = resolvedData;
 
-    if (id > 0)
-      this.updateService.Get(id)
-        .pipe(first())
-        .subscribe({
-          next: data => {
-            this.form.reset(data);
-
-            if (this.route.url.includes('visualize')) {
-              this.visualize = true
-              this.form.disable();
-            }
-          },
-          error: error => this.errorBar.handleError(error)
-        })
+        if (this.route.url.includes('visualize')) {
+          this.visualize = true
+          this.form.disable();
+        }
+      },
+      error: error => this.errorBar.handleError(error)
+    })
   }
 
   onCancel() {
-    this.route.navigate(['/admin'])
+    this.route.navigate([`/category/list/${this.updateViewModel.Id}`])
   }
 
   onSave() {
