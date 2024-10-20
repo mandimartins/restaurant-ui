@@ -8,10 +8,9 @@ describe('GridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GridComponent]
-    })
-    .compileComponents();
-    
+      declarations: [GridComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(GridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,29 +1,34 @@
 <nav class="nav">
   <div class="nav-wrapper">
-    <a  routerLink="/menu" class="brand-logo">
-      <i style="font-size: 3rem;" class="material-icons">restaurant_menu</i>
-      Restaurant</a>
+    <a routerLink="/menu" class="brand-logo">
+      <i style="font-size: 3rem" class="material-icons">restaurant_menu</i>
+      Restaurant</a
+    >
     <ul class="right hide-on-med-and-down">
       <li><a routerLink="/menu">Home</a></li>
-      <li><a href="#"><i class="material-icons">
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon [ngStyle]="{'color':'white'}">menu</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" yPosition="below" xPosition="before">
-          <button mat-menu-item>
-            <mat-icon>admin_panel_settings</mat-icon>
-            <a [ngStyle]="{'color':'black'}" routerLink="/admin">Admin</a>
-          </button>
-          <button mat-menu-item>
-            <mat-icon>manage_accounts</mat-icon>
-            <span>My Account </span>
-          </button>
-          <button mat-menu-item>
-            <mat-icon>settings</mat-icon>
-            <span>Settings</span>
-          </button>
-        </mat-menu>
-      </i></a></li>
+      <li>
+        <a href="#"
+          ><i class="material-icons">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon [ngStyle]="{ color: 'white' }">menu</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" yPosition="below" xPosition="before">
+              <button mat-menu-item>
+                <mat-icon>admin_panel_settings</mat-icon>
+                <a [ngStyle]="{ color: 'black' }" routerLink="/admin">Admin</a>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>manage_accounts</mat-icon>
+                <span>My Account </span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>settings</mat-icon>
+                <span>Settings</span>
+              </button>
+            </mat-menu>
+          </i></a
+        >
+      </li>
     </ul>
   </div>
 </nav>
@@ -33,5 +38,7 @@
 </main>
 
 <footer class="footer">
-  <p style="text-align: center; color: aliceblue; padding-top:20px;">Developed with &hearts; by Amanda Martins</p>
+  <p style="text-align: center; color: aliceblue; padding-top: 20px">
+    Developed with &hearts; by Amanda Martins
+  </p>
 </footer>

@@ -4,15 +4,8 @@ import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [
-    ErrorBarComponent
-  ],
-  imports: [
-    CommonModule,
-    MatIcon,
-  ],
-  exports:[
-    ErrorBarComponent
-  ]
+  declarations: [ErrorBarComponent],
+  imports: [CommonModule, MatIcon],
+  exports: [ErrorBarComponent],
 })
-export class ErrorBarModule { }
+export class ErrorBarModule {}

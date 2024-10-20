@@ -1,3 +1,3 @@
 export const environment = {
-    RESTAURANT_API:'https://productionrestaurantapi/api'
+  RESTAURANT_API: 'https://productionrestaurantapi/api',
 };

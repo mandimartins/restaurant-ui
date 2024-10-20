@@ -6,14 +6,26 @@ import { updateResolver } from './update/update.resolver';
 import { gridResolver } from './grid/grid.resolver';
 
 const routes: Routes = [
-  { path: 'list/:id', component: GridComponent, resolve:{resolvedData:  gridResolver} },
+  {
+    path: 'list/:id',
+    component: GridComponent,
+    resolve: { resolvedData: gridResolver },
+  },
   { path: 'list', component: GridComponent },
-  { path: 'edit/:id', component: UpdateComponent, resolve:  { resolvedData: updateResolver } },
-  { path: 'visualize/:id', component: UpdateComponent, resolve:  { resolvedData: updateResolver } }
+  {
+    path: 'edit/:id',
+    component: UpdateComponent,
+    resolve: { resolvedData: updateResolver },
+  },
+  {
+    path: 'visualize/:id',
+    component: UpdateComponent,
+    resolve: { resolvedData: updateResolver },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ProductRoutingModule { }
+export class ProductRoutingModule {}

@@ -9,7 +9,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import { MatCard, MatCardActions, MatCardContent, MatCardFooter, MatCardHeader, MatCardTitle } from '@angular/material/card';
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardFooter,
+  MatCardHeader,
+  MatCardTitle,
+} from '@angular/material/card';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { FileUploadModule } from '../../shared/components/file-upload/file-upload.module';
 import { MatOption, MatSelect } from '@angular/material/select';
@@ -19,20 +26,17 @@ import { ConfirmDeletionModule } from '../../shared/components/confirm-deletion/
 import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
-  declarations: [
-    GridComponent,
-    UpdateComponent,
-  ],
+  declarations: [GridComponent, UpdateComponent],
   imports: [
     CommonModule,
     CategoryRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     FileUploadModule,
-    MatFormFieldModule, 
+    MatFormFieldModule,
     MatInputModule,
     MatPaginator,
-    MatTableModule, 
+    MatTableModule,
     MatPaginatorModule,
     MatCard,
     MatCardHeader,
@@ -47,6 +51,6 @@ import { MatSortModule } from '@angular/material/sort';
     MatIconModule,
     ConfirmDeletionModule,
     MatSortModule,
-  ]
+  ],
 })
-export class CategoryModule { }
+export class CategoryModule {}

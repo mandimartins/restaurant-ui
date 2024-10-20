@@ -2,13 +2,15 @@ import { TestBed } from '@angular/core/testing';
 
 import { UpdateService } from './update.service';
 import { provideHttpClient } from '@angular/common/http';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
 import { UpdateViewModel } from './update.viewmodel';
 import { HttpVerbsConstant } from '../../../shared/constants/http-verbs.constant';
 import { environment } from '../../../../environments/environment';
 
 fdescribe('UpdateService', () => {
-
   let updateService: UpdateService;
   let httpTestingController: HttpTestingController;
 
@@ -16,7 +18,7 @@ fdescribe('UpdateService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideHttpClient(), provideHttpClientTesting()]
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     });
     updateService = TestBed.inject(UpdateService);
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -27,32 +29,34 @@ fdescribe('UpdateService', () => {
   });
 
   it('should Save a Category', () => {
+    updateService.Save(new UpdateViewModel()).subscribe((data) => {
+      expect(data).toBeTruthy();
+    });
 
-    updateService.Save(new UpdateViewModel()).subscribe(data => {
-      expect(data).toBeTruthy()
-    })
+    const req = httpTestingController.expectOne(
+      `${environment.RESTAURANT_API}/category/add`,
+    );
 
-    const req = httpTestingController.expectOne(`${environment.RESTAURANT_API}/category/add`);
-    
-    expect(req.request.method).toBe(httpVerbsConstant.POST)
+    expect(req.request.method).toBe(httpVerbsConstant.POST);
 
-    req.flush({Id: 1, Name:"Pen", Description: "All types of pen"})
-  })
+    req.flush({ Id: 1, Name: 'Pen', Description: 'All types of pen' });
+  });
 
-  it("should Get a Category by Id", () => {
+  it('should Get a Category by Id', () => {
+    updateService.Get(1).subscribe((data) => {
+      expect(data).toBeTruthy();
+    });
 
-    updateService.Get(1).subscribe(data => {
-      expect(data).toBeTruthy()
-    })
-    
-    const req = httpTestingController.expectOne(`${environment.RESTAURANT_API}/category/get/1`)
+    const req = httpTestingController.expectOne(
+      `${environment.RESTAURANT_API}/category/get/1`,
+    );
 
-    expect(req.request.method).toBe(httpVerbsConstant.GET)
+    expect(req.request.method).toBe(httpVerbsConstant.GET);
 
-    req.flush({Id: 1, Name:"Pen", Description: "All types of pen"})
-  })
+    req.flush({ Id: 1, Name: 'Pen', Description: 'All types of pen' });
+  });
 
   afterEach(() => {
     httpTestingController.verify();
-  })
+  });
 });

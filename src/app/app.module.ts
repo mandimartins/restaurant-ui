@@ -13,10 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ToastComponent
-  ],
+  declarations: [AppComponent, ToastComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,7 +22,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatMenuModule,
     MatButtonModule,
   ],
-  providers: [provideHttpClient(withInterceptors([authInterceptor])), provideAnimationsAsync()],
-  bootstrap: [AppComponent]
+  providers: [
+    provideHttpClient(withInterceptors([authInterceptor])),
+    provideAnimationsAsync(),
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

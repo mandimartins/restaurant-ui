@@ -6,21 +6,22 @@ import { IUserInfo } from './IUserInfo';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   constructor(
     private httpClientService: HttpClientService,
-    private tokenService: TokenService) { }
+    private tokenService: TokenService,
+  ) {}
 
   public auth(user: any): Observable<unknown> {
     return this.httpClientService
-    .post(`${environment.RESTAURANT_API}/auth/signin`, user)
+      .post(`${environment.RESTAURANT_API}/auth/signin`, user)
       .pipe(
-        map(response => {
-          this.tokenService.storeUserInfo((response as IUserInfo))
+        map((response) => {
+          this.tokenService.storeUserInfo(response as IUserInfo);
           return response;
-        }));
+        }),
+      );
   }
 }

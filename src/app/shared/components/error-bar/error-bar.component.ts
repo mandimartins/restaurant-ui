@@ -4,24 +4,20 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-error-bar',
   templateUrl: './error-bar.component.html',
-  styleUrl: './error-bar.component.scss'
+  styleUrl: './error-bar.component.scss',
 })
 export class ErrorBarComponent {
+  constructor() {}
 
-  constructor() {
-    
-  }
-  
   isOpen = false;
-  errors: Array<any> = new Array<any>();
+  errors: any[] = new Array<any>();
 
-  handleError(error: HttpErrorResponse){
+  handleError(error: HttpErrorResponse) {
     this.isOpen = true;
-    this.errors = error.error
+    this.errors = error.error;
   }
 
-
-  closeErrorBar(){
+  closeErrorBar() {
     this.isOpen = false;
   }
 }

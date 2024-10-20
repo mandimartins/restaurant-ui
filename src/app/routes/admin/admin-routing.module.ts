@@ -6,6 +6,6 @@ import { AdminComponent } from './admin.component';
 const routes: Routes = [{ path: '', component: AdminComponent }];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}
