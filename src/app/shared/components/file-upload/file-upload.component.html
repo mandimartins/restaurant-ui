@@ -1,29 +1,29 @@
 <div class="CustomFileInputWrapper">
-    <input
-    type="file" 
-    [accept]="fileExtensions" 
-    name="FileInput" 
-    id="FileInput" 
-    #fileInput 
-    (change)="onSelectFileChange($event)" >
-    <div class="CustomFileInput">
-        <span>Choose a file:</span>
-        <button mat-button (click)="onSelectFileClick()">SELECT FILE</button>
-    </div>
+  <input
+    type="file"
+    [accept]="fileExtensions"
+    name="FileInput"
+    id="FileInput"
+    #fileInput
+    (change)="onSelectFileChange($event)"
+  />
+  <div class="CustomFileInput">
+    <span>Choose a file:</span>
+    <button mat-button (click)="onSelectFileClick()">SELECT FILE</button>
+  </div>
 </div>
 
 <div *ngIf="src64String.length > 0" class="row">
-    <div class="col s6" style="margin-top: 10px;">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title align="start">Preview</mat-card-title>
-              </mat-card-header>
-            <img mat-card-image [src]="src64String" alt="Selected picture">
-            <mat-card-content>
-            </mat-card-content>
-            <mat-card-actions align="end">
-              <button mat-button (click)="removeSelectioin()">Remove</button>
-            </mat-card-actions>
-          </mat-card>
-    </div>
+  <div class="col s6" style="margin-top: 10px">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title align="start">Preview</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="src64String" alt="Selected picture" />
+      <mat-card-content> </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button (click)="removeSelectioin()">Remove</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

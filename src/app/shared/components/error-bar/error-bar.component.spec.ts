@@ -8,10 +8,9 @@ describe('ErrorBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ErrorBarComponent]
-    })
-    .compileComponents();
-    
+      declarations: [ErrorBarComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ErrorBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

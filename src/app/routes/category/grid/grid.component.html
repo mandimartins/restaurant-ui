@@ -1,15 +1,15 @@
-
 <div class="row">
-  <div class="col l12 m12 s12" style="margin-top: 20px;">
+  <div class="col l12 m12 s12" style="margin-top: 20px">
     <a mat-fab extended routerLink="/admin">
       <mat-icon>arrow_back</mat-icon>
-      Go back</a>
+      Go back</a
+    >
   </div>
 </div>
 
 <div class="row">
   <div class="col l12 m12 s12">
-      <app-error-bar #errorBar></app-error-bar>
+    <app-error-bar #errorBar></app-error-bar>
   </div>
 </div>
 
@@ -17,17 +17,19 @@
   <div class="col l2 m2 s12">
     <mat-form-field appearance="outline">
       <mat-label>Search option</mat-label>
-      <mat-select [(ngModel)]="filterType" style="padding:3px">
+      <mat-select [(ngModel)]="filterType" style="padding: 3px">
         <mat-option [value]="filterTypeEnum.Code">Code</mat-option>
-        <mat-option [value]="filterTypeEnum.Description">Description</mat-option>
+        <mat-option [value]="filterTypeEnum.Description"
+          >Description</mat-option
+        >
         <mat-option [value]="filterTypeEnum.Name">Name</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
   <div class="col l4 m4 s12">
-    <mat-form-field appearance="outline" style="width: 100%; height: 1p0x;">
-      <input matInput [(ngModel)]="filterTerm" placeholder="Search term">
+    <mat-form-field appearance="outline" style="width: 100%; height: 1p0x">
+      <input matInput [(ngModel)]="filterTerm" placeholder="Search term" />
     </mat-form-field>
   </div>
 
@@ -42,61 +44,103 @@
   <div class="col l12">
     <mat-card>
       <mat-card-content>
-       
-          <div class="table__container">
-          <table 
+        <div class="table__container">
+          <table
             mat-table
-            matSort 
+            matSort
             [dataSource]="dataSource$"
-            (matSortChange)="onSortChange($event)">
-    
+            (matSortChange)="onSortChange($event)"
+          >
             <ng-container matColumnDef="Actions">
-              <th class="table-header-size" mat-header-cell *matHeaderCellDef> Actions </th>
+              <th class="table-header-size" mat-header-cell *matHeaderCellDef>
+                Actions
+              </th>
               <td mat-cell *matCellDef="let element">
-
-                <button mat-mini-fab class="btn__action" (click)="onView(element)">
+                <button
+                  mat-mini-fab
+                  class="btn__action"
+                  (click)="onView(element)"
+                >
                   <mat-icon>visibility</mat-icon>
                 </button>
 
-                <button mat-mini-fab class="btn__action" (click)="onUpdate(element)">
+                <button
+                  mat-mini-fab
+                  class="btn__action"
+                  (click)="onUpdate(element)"
+                >
                   <mat-icon>edit</mat-icon>
                 </button>
 
-                <button mat-mini-fab class="btn__action" (click)="onDelete(element)">
+                <button
+                  mat-mini-fab
+                  class="btn__action"
+                  (click)="onDelete(element)"
+                >
                   <mat-icon>delete</mat-icon>
                 </button>
               </td>
             </ng-container>
 
             <ng-container matColumnDef="Id">
-              <th class="table-header-size" mat-header-cell *matHeaderCellDef mat-sort-header="Id" sortActionDescription="Sort by Id"> Id </th>
-              <td class="table-data-size" mat-cell *matCellDef="let item"> {{item.Id}} </td>
+              <th
+                class="table-header-size"
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header="Id"
+                sortActionDescription="Sort by Id"
+              >
+                Id
+              </th>
+              <td class="table-data-size" mat-cell *matCellDef="let item">
+                {{ item.Id }}
+              </td>
             </ng-container>
-    
+
             <ng-container matColumnDef="Name">
-              <th class="table-header-size" mat-header-cell *matHeaderCellDef mat-sort-header="Name" sortActionDescription="Sort by Name"> Name </th>
-              <td class="table-data-size" mat-cell *matCellDef="let item"> {{item.Name}} </td>
+              <th
+                class="table-header-size"
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header="Name"
+                sortActionDescription="Sort by Name"
+              >
+                Name
+              </th>
+              <td class="table-data-size" mat-cell *matCellDef="let item">
+                {{ item.Name }}
+              </td>
             </ng-container>
-    
+
             <ng-container matColumnDef="Description">
-              <th class="table-header-size" mat-header-cell *matHeaderCellDef mat-sort-header="Description" sortActionDescription="Sort by Description"> Description </th>
-              <td class="table-data-size" mat-cell *matCellDef="let item"> {{item.Description}} </td>
+              <th
+                class="table-header-size"
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header="Description"
+                sortActionDescription="Sort by Description"
+              >
+                Description
+              </th>
+              <td class="table-data-size" mat-cell *matCellDef="let item">
+                {{ item.Description }}
+              </td>
             </ng-container>
-    
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
         </div>
-          <mat-paginator 
-            #paginator
-            [pageSizeOptions]="pageSizeOptions" 
-            [length]="dataSource$.total" 
-            (page)="onPageChange($event)"
-            showFirstLastButtons
-            aria-label="Select page of category">
-          </mat-paginator>
+        <mat-paginator
+          #paginator
+          [pageSizeOptions]="pageSizeOptions"
+          [length]="dataSource$.total"
+          (page)="onPageChange($event)"
+          showFirstLastButtons
+          aria-label="Select page of category"
+        >
+        </mat-paginator>
       </mat-card-content>
     </mat-card>
-
   </div>
 </div>

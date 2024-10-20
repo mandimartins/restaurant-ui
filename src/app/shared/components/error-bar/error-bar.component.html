@@ -1,18 +1,18 @@
 <div class="error red lighten-5" *ngIf="isOpen">
-    <mat-icon 
-        aria-hidden="false" 
-        aria-label="Category" 
-        fontIcon="close" 
-        class="icon-display red-text text-darken-4"
-        (click)="closeErrorBar()"></mat-icon>
-    <p class="red-text text-darken-4">
-        <strong>Something went wrong!</strong>
-    </p>
-    
-    <ul class="error-list">
-        <li class="error-list__item"  *ngFor="let error of errors">
-            <span class="red-text text-darken-2">{{error.Content}}</span>
-        </li>
-    </ul>
-</div>
+  <mat-icon
+    aria-hidden="false"
+    aria-label="Category"
+    fontIcon="close"
+    class="icon-display red-text text-darken-4"
+    (click)="closeErrorBar()"
+  ></mat-icon>
+  <p class="red-text text-darken-4">
+    <strong>Something went wrong!</strong>
+  </p>
 
+  <ul class="error-list">
+    <li class="error-list__item" *ngFor="let error of errors">
+      <span class="red-text text-darken-2">{{ error.Content }}</span>
+    </li>
+  </ul>
+</div>

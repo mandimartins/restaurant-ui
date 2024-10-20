@@ -8,10 +8,9 @@ describe('ConfirmDeletionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ConfirmDeletionComponent]
-    })
-    .compileComponents();
-    
+      declarations: [ConfirmDeletionComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ConfirmDeletionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

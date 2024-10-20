@@ -17,11 +17,11 @@ describe('ErrorHandlerService', () => {
   });
 
   it('should handle 401 error and return custom error', (done) => {
-    const errorMessage = 'Error message'
+    const errorMessage = 'Error message';
     const mockErrorResponse = new HttpErrorResponse({
       error: errorMessage,
       status: 401,
-      statusText: 'Unauthorized'
+      statusText: 'Unauthorized',
     });
 
     service.handleError(mockErrorResponse).subscribe({
@@ -29,9 +29,14 @@ describe('ErrorHandlerService', () => {
       error: (error) => {
         expect(error).toBeInstanceOf(HttpErrorResponse);
         expect(error.status).toBe(401);
-        expect(error.error).toEqual([new ErrorMessage('Unauthorized access', 'Access denied. Your session expired, try to sign in again.')]);
+        expect(error.error).toEqual([
+          new ErrorMessage(
+            'Unauthorized access',
+            'Access denied. Your session expired, try to sign in again.',
+          ),
+        ]);
         done();
-      }
+      },
     });
   });
 
@@ -40,9 +45,9 @@ describe('ErrorHandlerService', () => {
     const mockErrorResponse = new HttpErrorResponse({
       error: { message: errorMessage },
       status: 500,
-      statusText: 'Server Error'
+      statusText: 'Server Error',
     });
-  
+
     service.handleError(mockErrorResponse).subscribe({
       next: () => fail('Expected an error, not data'),
       error: (error) => {
@@ -50,8 +55,7 @@ describe('ErrorHandlerService', () => {
         expect(error.status).toBe(500);
         expect(error.error).toEqual({ message: errorMessage });
         done();
-      }
+      },
     });
   });
-
 });

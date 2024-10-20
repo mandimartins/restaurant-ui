@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { MatCard, MatCardActions, MatCardContent, MatCardHeader } from '@angular/material/card';
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardHeader,
+} from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 
 @NgModule({
-  declarations: [
-    AdminComponent
-  ],
+  declarations: [AdminComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -19,7 +22,7 @@ import { MatButton } from '@angular/material/button';
     MatCardHeader,
     MatIcon,
     MatCardActions,
-    MatButton
-  ]
+    MatButton,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}
