@@ -119,13 +119,13 @@ export class UpdateComponent implements OnInit {
 
   updateDescriptionErrorMessage() {
     if (this.form.controls.Description.hasError('required')) {
-      this.titleErrorMessage.set('[Description] is required.');
+      this.descriptionErrorMessage.set('[Description] is required.');
     } else if (this.form.controls.Description.hasError('maxlength')) {
-      this.titleErrorMessage.set(
+      this.descriptionErrorMessage.set(
         '[Description] cannot have more than 80 characters',
       );
     } else {
-      this.titleErrorMessage.set('');
+      this.descriptionErrorMessage.set('');
     }
   }
 

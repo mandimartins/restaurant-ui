@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 import { MenuRoutingModule } from './menu-routing.module';
 import { GridComponent } from './grid/grid.component';
@@ -53,5 +53,6 @@ import { MatSortModule } from '@angular/material/sort';
     ConfirmDeletionModule,
     MatSortModule,
   ],
+  providers: [CurrencyPipe],
 })
 export class MenuModule {}
