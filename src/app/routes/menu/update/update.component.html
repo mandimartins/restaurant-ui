@@ -29,15 +29,15 @@
 
               <div class="row">
                 <mat-form-field class="col s12 m12 l12" appearance="outline">
-                  <mat-label>Name</mat-label>
+                  <mat-label>Title</mat-label>
                   <input
                     matInput
-                    placeholder="Ex. The Fried Kitchen"
-                    formControlName="Name"
-                    (blur)="updateNameErrorMessage()"
+                    placeholder="Ex. Drinks..."
+                    formControlName="Title"
+                    (blur)="updateTitleErrorMessage()"
                   />
-                  @if (form.controls.Name.invalid) {
-                    <mat-error>{{ nameErrorMessage() }}</mat-error>
+                  @if (form.controls.Title.invalid) {
+                    <mat-error>{{ titleErrorMessage() }}</mat-error>
                   }
                 </mat-form-field>
               </div>
@@ -60,30 +60,19 @@
 
               <div class="row">
                 <mat-form-field class="col s12 m12 l12" appearance="outline">
-                  <mat-label>Price</mat-label>
+                  <mat-label>Badge Description</mat-label>
                   <input
                     matInput
                     placeholder="Ex. Additional info..."
-                    formControlName="Price"
-                    (change)="formatCurrency()"
-                    (blur)="updatePriceErrorMessage()"
+                    formControlName="BadgeDescription"
+                    (blur)="updateBadgeDescriptionMessage()"
                   />
 
-                  @if (form.controls.Price.invalid) {
-                    <mat-error>{{ priceErrorMessage() }}</mat-error>
+                  @if (form.controls.BadgeDescription.invalid) {
+                    <mat-error>{{ badgeDescriptionErrorMessage() }}</mat-error>
                   }
                 </mat-form-field>
               </div>
-
-              <!-- <div class="row">
-                                  <mat-form-field class="col s12 m12 l12" appearance="outline">
-                                      <mat-label>Parent category</mat-label>
-                                      <mat-select formControlName="ParentCategory">
-                                        <mat-option value="option1">Option 1</mat-option>
-                                        <mat-option value="option3">Option 3</mat-option>
-                                      </mat-select>
-                                  </mat-form-field>
-                              </div> -->
             </form>
           </div>
         </mat-card-content>
