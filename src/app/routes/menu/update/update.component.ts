@@ -1,6 +1,6 @@
 import { Component, ViewChild, signal, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IForm as IForm, UpdateViewModel } from './update.viewmodel';
+import { IForm, UpdateViewModel } from './update.viewmodel';
 import { UpdateService } from './update.service';
 import { first, merge } from 'rxjs';
 import { ErrorBarComponent } from '../../../shared/components/error-bar/error-bar.component';
@@ -8,7 +8,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -34,10 +34,12 @@ export class UpdateComponent implements OnInit {
     private snackBar: MatSnackBar,
     private activatedRoute: ActivatedRoute,
     private currencyPipe: CurrencyPipe,
+    private router: Router,
+    private location: Location,
   ) {
     this.form = this.formBuilder.group({
       Id: [{ value: 0, disabled: true }],
-      Active: [false, [Validators.required]],
+      Active: [false],
       Title: ['', [Validators.required, Validators.maxLength(35)]],
       Description: ['', [Validators.required, Validators.maxLength(80)]],
       BadgeDescription: ['', [Validators.maxLength(20)]],
@@ -85,6 +87,10 @@ export class UpdateComponent implements OnInit {
     });
   }
 
+  onGoBack() {
+    this.location.back();
+  }
+
   onCancel() {
     this.route.navigate([`/menu/list/${this.updateViewModel.Id}`]);
   }
@@ -100,7 +106,10 @@ export class UpdateComponent implements OnInit {
       .Save(this.updateViewModel)
       .pipe(first())
       .subscribe({
-        next: () => this.snackBar.open('Menu created successfully!', 'OK'),
+        next: ({ Id }: UpdateViewModel) => {
+          this.snackBar.open('Menu created successfully!', 'OK');
+          this.router.navigate([`/menu/list/${Id}`]);
+        },
         error: (error: HttpErrorResponse) => {
           return this.errorBar.handleError(error);
         },
