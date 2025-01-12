@@ -2,9 +2,11 @@ import { FormControl } from '@angular/forms';
 
 export class UpdateViewModel {
   public Id = 0;
-  public Active = '';
+  public Active = false;
   public Title = '';
   public Description = '';
+  public ImageURL = '';
+  public ImageBase64 = '';
   public BadgeDescription = '';
   public BadgeColor = '';
 }

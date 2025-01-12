@@ -12,6 +12,7 @@ import { ConfirmDeletionComponent } from '../../../shared/components/confirm-del
 import { Sort } from '@angular/material/sort';
 import { FilterTypeEnum } from '../../../shared/enums/filterTypeEnum';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-grid',
@@ -24,6 +25,7 @@ export class GridComponent implements AfterViewInit {
     private router: Router,
     private matDialogService: MatDialog,
     private activatedRoute: ActivatedRoute,
+    private location: Location,
   ) {}
 
   readonly filterTypeEnum = FilterTypeEnum;
@@ -34,7 +36,6 @@ export class GridComponent implements AfterViewInit {
     'Title',
     'Description',
     'BadgeDescription',
-    'BadgeColor',
   ];
 
   dataSource$ = new CustomDataSource<GridViewModel>(this.gridService);
@@ -76,6 +77,14 @@ export class GridComponent implements AfterViewInit {
 
   onPageChange() {
     this.fetchTable();
+  }
+
+  onGoBack() {
+    this.location.back();
+  }
+
+  onAdd() {
+    this.router.navigate([`/menu/edit/0`]);
   }
 
   onView({ Id }: GridViewModel) {
