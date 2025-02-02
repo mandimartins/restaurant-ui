@@ -23,7 +23,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { ConfirmDeletionModule } from '../../shared/components/confirm-deletion/confirm-deletion/confirm-deletion.module';
+import { ConfirmDeletionModule } from '../../shared/components/confirm-deletion/confirm-deletion.module';
 import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({

@@ -7,7 +7,7 @@ import { first } from 'rxjs';
 import { ErrorBarComponent } from '../../../shared/components/error-bar/error-bar.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ConfirmDeletionComponent } from '../../../shared/components/confirm-deletion/confirm-deletion/confirm-deletion.component';
+import { ConfirmDeletionComponent } from '../../../shared/components/confirm-deletion/confirm-deletion.component';
 import { Sort } from '@angular/material/sort';
 import { FilterTypeEnum } from '../../../shared/enums/filterTypeEnum';
 

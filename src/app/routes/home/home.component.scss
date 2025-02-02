@@ -1,0 +1,30 @@
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.example-card {
+  max-width: 280px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.info-panel {
+  padding: 1rem;
+}
+
+.info-panel p{
+  text-align: center;
+}

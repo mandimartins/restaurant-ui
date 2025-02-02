@@ -10,7 +10,7 @@ import { UpdateViewModel } from './update.viewmodel';
 import { HttpVerbsConstant } from '../../../shared/constants/http-verbs.constant';
 import { environment } from '../../../../environments/environment';
 
-fdescribe('UpdateService', () => {
+describe('Category UpdateService', () => {
   let updateService: UpdateService;
   let httpTestingController: HttpTestingController;
 

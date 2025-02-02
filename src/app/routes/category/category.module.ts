@@ -22,7 +22,7 @@ import { FileUploadModule } from '../../shared/components/file-upload/file-uploa
 import { MatOption, MatSelect } from '@angular/material/select';
 import { ErrorBarModule } from '../../shared/components/error-bar/error-bar.module';
 import { MatIconModule } from '@angular/material/icon';
-import { ConfirmDeletionModule } from '../../shared/components/confirm-deletion/confirm-deletion/confirm-deletion.module';
+import { ConfirmDeletionModule } from '../../shared/components/confirm-deletion/confirm-deletion.module';
 import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
