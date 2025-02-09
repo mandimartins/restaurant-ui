@@ -1,0 +1,21 @@
+<mat-card class="example-card margin-bottom-20" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title style="margin-bottom: 1rem">{{
+      menu.Title
+    }}</mat-card-title>
+  </mat-card-header>
+  <img
+    mat-card-image
+    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+    alt="Photo of a Shiba Inu"
+  />
+  <mat-card-content style="margin-top: 1rem">
+    <p>
+      {{ menu.Description }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="openMenu(menu)">OPEN</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

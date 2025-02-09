@@ -13,9 +13,11 @@ import {
 } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
+import { MenuCardComponent } from './components/menu-card/menu-card.component';
+import { MenuCardItemComponent } from './components/menu-card-item/menu-card-item.component';
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, MenuCardComponent, MenuCardItemComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

@@ -1,7 +1,10 @@
+import { Product } from '../../shared/models/product';
+
 export class MenuItem {
   Id = 0;
   IdMenu = 0;
   IdProduct = 0;
+  Products = new Array<Product>();
   Menu = new Menu();
 }
 
