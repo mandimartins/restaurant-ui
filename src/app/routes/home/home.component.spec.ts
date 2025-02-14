@@ -5,6 +5,9 @@ import { of, throwError } from 'rxjs';
 import { Menu, MenuItem } from './home.viewmodel';
 import { MatCardModule } from '@angular/material/card';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MenuCardComponent } from './components/menu-card/menu-card.component';
+import { MenuCardItemComponent } from './components/menu-card-item/menu-card-item.component';
+import { ActivatedRoute, provideRouter } from '@angular/router';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -45,9 +48,16 @@ describe('HomeComponent', () => {
     mockHomeService.getMenus.and.returnValue(of(mockMenus)); // Return mock data as observable
 
     await TestBed.configureTestingModule({
-      declarations: [HomeComponent],
+      declarations: [HomeComponent, MenuCardComponent, MenuCardItemComponent],
       imports: [MatCardModule],
-      providers: [{ provide: HomeService, useValue: mockHomeService }],
+      providers: [
+        { provide: HomeService, useValue: mockHomeService },
+        provideRouter([]), // New way to provide router for testing
+        {
+          provide: ActivatedRoute,
+          useValue: { params: of({}) }, // Mock ActivatedRoute
+        },
+      ],
     }).compileComponents();
   });
 
