@@ -115,7 +115,7 @@ describe('HomeComponent', () => {
       },
     ];
 
-    homeService.getMenus.and.returnValue(of(mockMenus));
+    homeService.getMenus.and.returnValue(of(mockMenus).pipe(delay(1000))); // Delay the response
 
     fixture.detectChanges();
     await fixture.whenStable(); // Wait for async operations
