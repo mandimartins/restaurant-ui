@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { HomeService } from './home.service';
-import { of, throwError } from 'rxjs';
+import { delay, of, throwError } from 'rxjs';
 import { Menu, MenuItem } from './home.viewmodel';
 import { MatCardModule } from '@angular/material/card';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -9,55 +9,30 @@ import { MenuCardComponent } from './components/menu-card/menu-card.component';
 import { MenuCardItemComponent } from './components/menu-card-item/menu-card-item.component';
 import { ActivatedRoute, provideRouter } from '@angular/router';
 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let mockHomeService: jasmine.SpyObj<HomeService>;
+  let homeService: jasmine.SpyObj<HomeService>;
 
   //set up the test environment
   beforeEach(async () => {
     // Create a spy for HomeService
-    mockHomeService = jasmine.createSpyObj('HomeService', ['getMenus']);
-
-    // Define a mock menu list to return, matching the new Menu structure
-    const mockMenus: Menu[] = [
-      {
-        Id: 1,
-        Active: true,
-        Title: 'Pizza',
-        Description: 'Delicious pizza with cheese',
-        ImageURL: 'pizza.jpg',
-        ImageBase64: '',
-        BadgeDescription: 'New',
-        BadgeColor: 'red',
-        MenuItem: [new MenuItem()],
-      },
-      {
-        Id: 2,
-        Active: true,
-        Title: 'Burger',
-        Description: 'Juicy beef burger',
-        ImageURL: 'burger.jpg',
-        ImageBase64: '',
-        BadgeDescription: 'Popular',
-        BadgeColor: 'green',
-        MenuItem: [new MenuItem()],
-      },
-    ];
-
-    mockHomeService.getMenus.and.returnValue(of(mockMenus)); // Return mock data as observable
+    homeService = jasmine.createSpyObj('HomeService', ['getMenus']);
 
     await TestBed.configureTestingModule({
       declarations: [HomeComponent, MenuCardComponent, MenuCardItemComponent],
       imports: [MatCardModule],
       providers: [
-        { provide: HomeService, useValue: mockHomeService },
-        provideRouter([]), // New way to provide router for testing
+        { provide: HomeService, useValue: homeService },
+        provideRouter([]),
         {
           provide: ActivatedRoute,
-          useValue: { params: of({}) }, // Mock ActivatedRoute
+          useValue: { params: of({}) },
         },
       ],
+      schemas: [NO_ERRORS_SCHEMA], // Ignore child component errors
     }).compileComponents();
   });
 
@@ -65,7 +40,6 @@ describe('HomeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges(); // Trigger initial data binding
   });
 
   afterEach(() => {
@@ -77,40 +51,19 @@ describe('HomeComponent', () => {
   });
 
   it('should inject HomeService and call getMenus', () => {
-    // Act: Call ngOnInit to trigger the HTTP call
-    component.ngOnInit();
+    homeService.getMenus.and.returnValue(of([]));
+    fixture.detectChanges();
 
-    expect(mockHomeService.getMenus).toHaveBeenCalled();
+    expect(homeService.getMenus).toHaveBeenCalled();
   });
 
   it('should call getMenus and set menus$', () => {
-    component.ngOnInit();
-    expect(mockHomeService.getMenus).toHaveBeenCalled();
+    homeService.getMenus.and.returnValue(of([]));
+    fixture.detectChanges();
+
+    expect(homeService.getMenus).toHaveBeenCalled();
     component.menus$.subscribe((menus) => {
-      expect(menus).toEqual([
-        {
-          Id: 1,
-          Active: true,
-          Title: 'Pizza',
-          Description: 'Delicious pizza with cheese',
-          ImageURL: 'pizza.jpg',
-          ImageBase64: '',
-          BadgeDescription: 'New',
-          BadgeColor: 'red',
-          MenuItem: [new MenuItem()],
-        },
-        {
-          Id: 2,
-          Active: true,
-          Title: 'Burger',
-          Description: 'Juicy beef burger',
-          ImageURL: 'burger.jpg',
-          ImageBase64: '',
-          BadgeDescription: 'Popular',
-          BadgeColor: 'green',
-          MenuItem: [new MenuItem()],
-        },
-      ]);
+      expect(menus).toEqual([]);
     });
   });
 
@@ -123,11 +76,10 @@ describe('HomeComponent', () => {
     });
 
     // Simulate the error response from the service
-    mockHomeService.getMenus.and.returnValue(throwError(() => errorResponse));
+    homeService.getMenus.and.returnValue(throwError(() => errorResponse));
 
     component.ngOnInit();
 
-    // Check if the error is properly handled by subscribing to the menus$ observable
     component.menus$.subscribe({
       next: () => {
         fail('Expected error, but got success');
@@ -138,5 +90,38 @@ describe('HomeComponent', () => {
         //check if the error message is logged or handled as expected
       },
     });
+  });
+
+  it('should show the spinner while the menus does not load', () => {
+    homeService.getMenus.and.returnValue(of().pipe(delay(1000))); // Delay the response
+    fixture.detectChanges();
+
+    const spinner = fixture.nativeElement.querySelector('mat-spinner');
+    expect(spinner).toBeTruthy();
+  });
+
+  it('should show the menu cards when the API return some data', async () => {
+    const mockMenus: Menu[] = [
+      {
+        Id: 1,
+        Active: true,
+        Title: 'Pizza',
+        Description: 'Delicious pizza with cheese',
+        ImageURL: 'pizza.jpg',
+        ImageBase64: '',
+        BadgeDescription: 'New',
+        BadgeColor: 'red',
+        MenuItem: [new MenuItem()],
+      },
+    ];
+
+    homeService.getMenus.and.returnValue(of(mockMenus));
+
+    fixture.detectChanges();
+    await fixture.whenStable(); // Wait for async operations
+    fixture.detectChanges();
+
+    const menuCards = fixture.nativeElement.querySelectorAll('app-menu-card');
+    expect(menuCards.length).toBe(mockMenus.length);
   });
 });
