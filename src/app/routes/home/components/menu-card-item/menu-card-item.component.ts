@@ -18,7 +18,6 @@ export class MenuCardItemComponent {
   menusItens$!: Observable<MenuItem[]>;
 
   ngOnInit() {
-
     this.route.params.subscribe((params) => {
       const menuId = Number(params['id']);
       this.menusItens$ = this.homeService.getMenuItens(menuId);

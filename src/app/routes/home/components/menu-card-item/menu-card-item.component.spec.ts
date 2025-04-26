@@ -2,7 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MenuCardItemComponent } from './menu-card-item.component';
 import { ActivatedRoute, provideRouter } from '@angular/router';
 import { of } from 'rxjs';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { HomeService } from '../../home.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -13,7 +16,7 @@ describe('MenuCardItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports:[MatProgressSpinnerModule],
+      imports: [MatProgressSpinnerModule],
       declarations: [MenuCardItemComponent],
       providers: [
         provideRouter([]), // New way (standalone) to provide router for testing
@@ -23,7 +26,7 @@ describe('MenuCardItemComponent', () => {
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-        HomeService
+        HomeService,
       ],
     }).compileComponents();
 
